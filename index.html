@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Way Ministry | Danville, VA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:    #1B3A2D;
+      --green-mid:#2A5740;
+      --gold:     #C49A3C;
+      --gold-lt:  #D4AE5A;
+      --ivory:    #F9F5EE;
+      --white:    #FFFFFF;
+      --text:     #2C2C2C;
+      --muted:    #6A6A6A;
+      --border:   #E2DAC8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* Offset anchor targets so the sticky nav doesn't cover them */
+    section[id], div[id] { scroll-margin-top: 80px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--ivory);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      height: 66px;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.03em;
+    }
+    .nav-logo-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      font-weight: 400;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+    .nav-give {
+      background: var(--gold);
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.55rem 1.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-give:hover { background: var(--gold-lt); }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 1.5rem 4rem;
+      background: var(--green);
+      overflow: hidden;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.22;
+    }
+    .hero-photo-placeholder {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #1B3A2D 0%, #2A5740 55%, #1B3A2D 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Subtle cross motif in background */
+    .hero-photo-placeholder::before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 260px;
+      background: rgba(196,154,60,0.12);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-photo-placeholder::after {
+      content: '';
+      position: absolute;
+      width: 160px;
+      height: 2px;
+      background: rgba(196,154,60,0.12);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -62%);
+    }
+    .hero-content {
+      position: relative;
+      max-width: 720px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      font-weight: 500;
+      margin-bottom: 1.8rem;
+    }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      color: var(--white);
+      line-height: 1.15;
+      font-weight: 400;
+      margin-bottom: 1.8rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-tagline em {
+      color: var(--gold-lt);
+      font-style: normal;
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.62);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 2.6rem;
+      line-height: 1.75;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.9rem 2.2rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+      border-radius: 1px;
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 0.9rem 2.2rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+      border-radius: 1px;
+    }
+    .btn-outline:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
+
+    /* ── WELCOME SECTION ── */
+    .welcome-section {
+      padding: 6rem 6%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .welcome-text .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+    .welcome-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--green);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .welcome-text p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+    .welcome-text p:last-of-type { margin-bottom: 1.75rem; }
+    .verse-block {
+      border-left: 2px solid var(--gold);
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      background: rgba(196,154,60,0.06);
+    }
+    .verse-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--green);
+      line-height: 1.6;
+    }
+    .verse-ref {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-top: 0.4rem;
+      font-weight: 600;
+    }
+    .welcome-image {
+      position: relative;
+    }
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #1B3A2D, #2A5740);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      gap: 0.75rem;
+    }
+    .img-placeholder svg { opacity: 0.3; }
+    .img-accent {
+      position: absolute;
+      bottom: -1.25rem;
+      right: -1.25rem;
+      width: 60%;
+      height: 60%;
+      border: 2px solid var(--gold);
+      border-radius: 2px;
+      pointer-events: none;
+      opacity: 0.35;
+      z-index: -1;
+    }
+
+    /* ── SERVICES ── */
+    .services-section {
+      background: var(--green);
+      padding: 5rem 6%;
+    }
+    .services-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .services-inner .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+    .services-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--white);
+      font-weight: 500;
+      margin-bottom: 3rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: rgba(255,255,255,0.04);
+      padding: 2.75rem 2rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .service-card:hover { background: rgba(255,255,255,0.08); }
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 1rem;
+      opacity: 0.6;
+    }
+    .service-day {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    .service-time {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ── PASTOR ── */
+    .pastor-section {
+      padding: 6rem 6%;
+      background: var(--white);
+    }
+    .pastor-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 4.5rem;
+      align-items: start;
+    }
+    .pastor-photo-wrap {
+      position: relative;
+    }
+    .pastor-photo-box {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #1B3A2D, #2A5740);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      gap: 0.6rem;
+    }
+    .pastor-photo-box svg { opacity: 0.3; }
+    .pastor-accent-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gold);
+    }
+    .pastor-info .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .pastor-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      color: var(--green);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+    .pastor-title {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .pastor-bio-para {
+      color: var(--muted);
+      font-size: 0.975rem;
+      line-height: 1.85;
+      margin-bottom: 0.9rem;
+    }
+    .pastor-mission {
+      margin-top: 1.5rem;
+      padding: 1.1rem 1.4rem;
+      background: var(--ivory);
+      border-left: 3px solid var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--green);
+      line-height: 1.6;
+    }
+
+    /* ── GIVING ── */
+    .giving-section {
+      padding: 5.5rem 6%;
+      background: var(--ivory);
+      text-align: center;
+    }
+    .giving-inner {
+      max-width: 540px;
+      margin: 0 auto;
+      background: var(--green);
+      padding: 3.5rem 3rem;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+    .giving-inner::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
+      border: 1px solid rgba(196,154,60,0.15);
+      border-radius: 50%;
+    }
+    .giving-inner::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 220px;
+      height: 220px;
+      border: 1px solid rgba(196,154,60,0.1);
+      border-radius: 50%;
+    }
+    .giving-inner .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .giving-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .giving-inner p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    /* ── VISIT ── */
+    .visit-section {
+      background: var(--white);
+      padding: 6rem 6%;
+    }
+    .visit-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .visit-info .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .visit-info h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--green);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+    .info-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-row:last-of-type { border-bottom: none; }
+    .info-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .info-value {
+      font-size: 0.975rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .info-value a {
+      color: var(--green);
+      text-decoration: none;
+    }
+    .info-value a:hover { text-decoration: underline; }
+    .map-box {
+      background: var(--ivory);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      gap: 0.6rem;
+    }
+    .map-box svg { opacity: 0.35; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green);
+      padding: 2.5rem 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    .footer-logo span {
+      display: block;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      font-style: normal;
+      margin-top: 0.15rem;
+    }
+    .footer-copy {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.78rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-right { gap: 0; }
+      .services-grid { grid-template-columns: 1fr; }
+      .welcome-section { grid-template-columns: 1fr; gap: 2.5rem; }
+      .welcome-image { display: none; }
+      .pastor-inner { grid-template-columns: 1fr; }
+      .pastor-photo-wrap { max-width: 260px; }
+      .visit-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .giving-inner { padding: 2.5rem 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-logo-main">The Way Ministry</span>
+    <span class="nav-logo-sub">Danville, Virginia</span>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#welcome">Our Church</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <a href="#giving" class="nav-give">Give</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-photo-placeholder"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Danville, Virginia &nbsp;&bull;&nbsp; twmchurch.org</p>
+    <h1 class="hero-tagline">
+      Where Love Leads<br>and <em>Grace Restores</em>
+    </h1>
+    <p class="hero-sub">Everyone is welcome. Whether you have walked with Jesus for many years or are simply searching for hope, you will find a place where you are loved, accepted, and encouraged to grow.</p>
+    <div class="hero-cta-row">
+      <a href="#visit" class="btn-primary">Plan Your Visit</a>
+      <a href="#giving" class="btn-outline">Give Online</a>
+    </div>
+  </div>
+</section>
+
+<!-- WELCOME / ABOUT -->
+<section class="welcome-section" id="welcome">
+  <div class="welcome-text">
+    <p class="eyebrow">About The Way Ministry</p>
+    <h2>Come as You Are.<br>Leave Changed by His Love.</h2>
+    <p>At The Way Ministry, everyone is welcome. Whether you have walked with Jesus for many years or are simply searching for hope, you will find a place where you are loved, accepted, and encouraged to grow.</p>
+    <div class="verse-block">
+      <p class="verse-text">"I am the way, the truth, and the life."</p>
+      <p class="verse-ref">John 14:6</p>
+    </div>
+    <p>We believe Jesus is the Way, the Truth, and the Life. Our desire is to help people experience His grace, discover His purpose, and walk daily in His truth. Our church is a place of restoration — we welcome individuals and families from every background, including those overcoming addiction, returning from incarceration, facing life's hardships, or simply looking for a church to call home.</p>
+    <p>No matter your past, God's love is greater. Join us for heartfelt worship, practical biblical teaching, prayer, fellowship, and hot breakfast on Sunday mornings. We are not a perfect church — we are a family learning to follow Jesus together.</p>
+    <a href="#visit" class="btn-primary">We Would Love to Meet You</a>
+  </div>
+  <div class="welcome-image">
+    <div class="img-placeholder">
+      <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="none" viewBox="0 0 24 24" stroke="white">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+      Church photo here
+    </div>
+    <div class="img-accent"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-inner">
+    <p class="eyebrow">Join Us</p>
+    <h2>You Are Always Welcome at Our Table</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#C49A3C">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+        </svg>
+        <div class="service-day">Sunday Morning</div>
+        <div class="service-name">Breakfast & Fellowship</div>
+        <div class="service-time">9:30 – 10:30 AM</div>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#C49A3C">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+        </svg>
+        <div class="service-day">Sunday</div>
+        <div class="service-name">Worship Service</div>
+        <div class="service-time">11:00 AM</div>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#C49A3C">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+        <div class="service-day">Wednesday</div>
+        <div class="service-name">Bible Study</div>
+        <div class="service-time">6:00 – 7:00 PM</div>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#C49A3C">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        <div class="service-day">First Saturday</div>
+        <div class="service-name">Men's Breakfast</div>
+        <div class="service-time">Monthly Fellowship</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PASTOR -->
+<section class="pastor-section" id="pastor">
+  <div class="pastor-inner">
+    <div class="pastor-photo-wrap">
+      <div class="pastor-photo-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="none" viewBox="0 0 24 24" stroke="white">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+        Pastor photo
+      </div>
+      <div class="pastor-accent-bar"></div>
+    </div>
+    <div class="pastor-info">
+      <p class="eyebrow">Meet Our Pastor</p>
+      <h2 class="pastor-name">Teresa P. Hawker</h2>
+      <p class="pastor-title">Lead Minister &nbsp;&bull;&nbsp; The Way Ministry</p>
+      <p class="pastor-bio-para">Teresa P. Hawker is a follower of Jesus Christ whose greatest desire is to know Him more deeply and to help others discover the hope, forgiveness, and new life found in Him. She believes every person has immeasurable value because every person is loved by God.</p>
+      <p class="pastor-bio-para">For the past 15 years, Teresa has served as the Lead Minister of The Way Ministry. Her passion is to teach the Bible in a way that is simple, understandable, and life-changing. Whether speaking from the pulpit, leading a Bible study, or sitting across the table from someone in need, her desire is the same: to point people to Jesus.</p>
+      <p class="pastor-bio-para">Teresa has spent more than 25 years teaching the Word of God through Bible studies, discipleship classes, and family ministry. She has a special burden for those who feel forgotten, including people struggling with addiction, those returning from incarceration, families facing hardship, and anyone searching for hope. She believes that no one is beyond the reach of God's grace and that every person deserves to hear the Gospel.</p>
+      <p class="pastor-bio-para">She is also a devoted wife, mother, and grandmother — and has served for more than 30 years as an instructor of Electrical and Electronics Engineering Technology at Danville Community College. Her love for teaching extends beyond the classroom, equipping people with knowledge, wisdom, and confidence in every area of life.</p>
+      <div class="pastor-mission">Love God. Love people. Teach His Word. Reach the one.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GIVING -->
+<section class="giving-section" id="giving">
+  <div class="giving-inner">
+    <p class="eyebrow">Support the Ministry</p>
+    <h2>Give Online</h2>
+    <p>Your generosity makes it possible for us to serve our community, reach those who feel forgotten, and share the love of Christ with everyone who walks through our doors. Giving is safe, simple, and takes just a moment.</p>
+    <a href="#" class="btn-primary">Give Now</a>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit-section" id="visit">
+  <div class="visit-inner">
+    <div class="visit-info">
+      <p class="eyebrow">Come Find Us</p>
+      <h2>We Would Love to See You Sunday</h2>
+      <div class="info-row">
+        <span class="info-label">Address</span>
+        <span class="info-value">313 Song Bird Lane<br>Danville, VA 24540</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Phone</span>
+        <span class="info-value"><a href="tel:4344895491">(434) 489-5491</a></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Email</span>
+        <span class="info-value"><a href="mailto:info@twmchurch.org">info@twmchurch.org</a></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Service Times</span>
+        <span class="info-value"><a href="#services">See our weekly schedule</a></span>
+      </div>
+    </div>
+    <div>
+      <div class="map-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="#1B3A2D">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        Google Map embed goes here<br>
+        <span style="font-size:0.65rem;opacity:0.6">313 Song Bird Lane, Danville VA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    The Way Ministry
+    <span>Where Love Leads and Grace Restores</span>
+  </div>
+  <p class="footer-copy">&copy; 2026 The Way Ministry &bull; Danville, Virginia</p>
+</footer>
+
+
+<script>
+  // Fallback smooth-scroll: some preview frames block plain anchor jumps.
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('href');
+      if (id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
